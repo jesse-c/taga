@@ -1,10 +1,10 @@
-Template.layout.helpers({
+Template.canvas.helpers({
 });
 
-Template.layout.events({
+Template.canvas.events({
 });
 
-Template.layout.rendered = function() {
+Template.canvas.rendered = function() {
   jsPlumb.ready(function () {
 
       var instance = jsPlumb.getInstance({

@@ -5,7 +5,11 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 jsplumb:jsplumb
 fourseven:scss
+meteorhacks:fast-render
+meteorhacks:flow-router
+accounts-password
+accounts-ui
+meteorhacks:flow-layout
