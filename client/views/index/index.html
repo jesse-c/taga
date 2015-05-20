@@ -1,3 +1,16 @@
 <template name="index">
-  <h1>Current rooms</h1>
+  {{> flashMessages}}
+
+  <h1>Workspaces</h1>
+  {{#each workspaces}}
+    {{name}} 
+
+    <a href="">Start new room</a>
+    <h2>Current rooms</h2>
+    {{#each rooms}}
+      {{name}}
+      {{userCount}} / {{maxUsersCount}}
+      <a href="{{pathFor route='room'}}">Join</a>
+    {{/each}}
+  {{/each}}
 </template>

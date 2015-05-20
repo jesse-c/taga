@@ -12,3 +12,6 @@ meteorhacks:fast-render
 accounts-password
 accounts-ui
 iron:router
+msavin:mongol
+aldeed:collection2
+dburles:collection-helpers
