@@ -158,4 +158,4 @@ Template.canvas.rendered = function() {
           });
       //});
   });
-}
+};
