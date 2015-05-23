@@ -9,9 +9,13 @@ main {
   width: 100%;
 }
 
+$content-height: 90%;
+
 .canvas {
-  height: 100%;
-  width: 100%;
+  height: $content-height;
+  width: 60%;
+
+  float: left;
 
   background:
       /* Small lines */
@@ -42,101 +46,137 @@ main {
       80px 80px,
       80px 80px,
       80px 80px;
-}
 
-.window {
-    background-color:white;
-    border:1px solid #346789;
-    box-shadow: 2px 2px 19px #e0e0e0;
-    -o-box-shadow: 2px 2px 19px #e0e0e0;
-    -webkit-box-shadow: 2px 2px 19px #e0e0e0;
-    -moz-box-shadow: 2px 2px 19px #e0e0e0;
-    position:absolute;
+  .window {
+      background-color:white;
+      border:1px solid #346789;
+      box-shadow: 2px 2px 19px #e0e0e0;
+      -o-box-shadow: 2px 2px 19px #e0e0e0;
+      -webkit-box-shadow: 2px 2px 19px #e0e0e0;
+      -moz-box-shadow: 2px 2px 19px #e0e0e0;
+      position:absolute;
+      color:black;
+      padding:0.5em;
+      width:80px;
+      height:80px;
+      line-height: 80px;
+      -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+      -moz-transition: -moz-box-shadow 0.15s ease-in;
+      -o-transition: -o-box-shadow 0.15s ease-in;
+      transition: box-shadow 0.15s ease-in;
+  }
+
+  .window:hover {
+      border:1px solid #123456;
+      box-shadow: 2px 2px 19px #444;
+      -o-box-shadow: 2px 2px 19px #444;
+      -webkit-box-shadow: 2px 2px 19px #444;
+      -moz-box-shadow: 2px 2px 19px #fff;
+      opacity:0.9;
+      filter:alpha(opacity=90);
+  }
+
+  .window a {
+      font-family:helvetica;
+  }
+
+  .flowchart-demo .window { border:1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+     -o-box-shadow: 2px 2px 19px #aaa;
+     -webkit-box-shadow: 2px 2px 19px #aaa;
+     -moz-box-shadow: 2px 2px 19px #aaa;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+
+    text-align:center;
+    z-index:20; position:absolute;
+    background-color:#eeeeef;
     color:black;
-    padding:0.5em;
-    width:80px;
-    height:80px;
-    line-height: 80px;
-    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
-    -moz-transition: -moz-box-shadow 0.15s ease-in;
-    -o-transition: -o-box-shadow 0.15s ease-in;
-    transition: box-shadow 0.15s ease-in;
-}
+    font-family:helvetica;padding:0.5em;
+    font-size:0.9em;
+  }
 
-.window:hover {
-    border:1px solid #123456;
+  .flowchart-demo .window:hover {
     box-shadow: 2px 2px 19px #444;
-    -o-box-shadow: 2px 2px 19px #444;
-    -webkit-box-shadow: 2px 2px 19px #444;
-    -moz-box-shadow: 2px 2px 19px #fff;
-    opacity:0.9;
-    filter:alpha(opacity=90);
+     -o-box-shadow: 2px 2px 19px #444;
+     -webkit-box-shadow: 2px 2px 19px #444;
+     -moz-box-shadow: 2px 2px 19px #444;
+      opacity:0.6;
+    filter:alpha(opacity=60);
+  }
+
+  .flowchart-demo .active {
+    border:1px dotted green;
+  }
+  .flowchart-demo .hover {
+    border:1px dotted red;
+  }
+
+  #flowchartWindow1 { top: 12px * 0; left: 12px * 0;}
+  #flowchartWindow2 { top: 12px * 0; left: 12px * 40;}
+  #flowchartWindow3 { top: 12px * 30; left: 12px * 20;}
+  #flowchartWindow4 { top: 12px * 20; left: 12px * 60;}
+  .flowchart-demo ._jsPlumb_connector { z-index:4; }
+  .flowchart-demo ._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel{ z-index:21;cursor:pointer; }
+
+  .flowchart-demo .aLabel {
+    background-color:white; 
+    padding:0.4em; 
+    font:12px sans-serif; 
+    color:#444;
+    z-index:21;
+    border:1px dotted gray;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    cursor: pointer;
+  }
+  .flowchart-demo .aLabel._jsPlumb_hover {
+    background-color:#5C96BC;
+    color:white;  
+    border:1px solid white;
+  }
+
+  .window._jsPlumb_connected {
+      border:2px solid green;
+  }
+
+  .jsplumb-drag {
+      border:4px solid pink !important;
+  }
 }
 
-.window a {
-    font-family:helvetica;
+.items {
+  height: $content-height;
+  width: 20%;
+
+  float: left;
+
+  background: blue;
 }
 
-.flowchart-demo .window { border:1px solid #346789;
-  box-shadow: 2px 2px 19px #aaa;
-   -o-box-shadow: 2px 2px 19px #aaa;
-   -webkit-box-shadow: 2px 2px 19px #aaa;
-   -moz-box-shadow: 2px 2px 19px #aaa;
-  opacity:0.8;
-  filter:alpha(opacity=80);
+.room__chat {
+  height: $content-height;
+  width: 20%;
 
-  text-align:center;
-  z-index:20; position:absolute;
-  background-color:#eeeeef;
-  color:black;
-  font-family:helvetica;padding:0.5em;
-  font-size:0.9em;
+  float: left;
+
+  background: red;
 }
 
-.flowchart-demo .window:hover {
-  box-shadow: 2px 2px 19px #444;
-   -o-box-shadow: 2px 2px 19px #444;
-   -webkit-box-shadow: 2px 2px 19px #444;
-   -moz-box-shadow: 2px 2px 19px #444;
-    opacity:0.6;
-  filter:alpha(opacity=60);
+.room__header {
+  height: (100 - $content-height) / 2;
+  width: 100%;
+
+  float: left;
+
+  background: yellow;
 }
 
-.flowchart-demo .active {
-  border:1px dotted green;
-}
-.flowchart-demo .hover {
-  border:1px dotted red;
-}
+.room__status {
+  height: (100 - $content-height) / 2;
+  width: 100%;
 
-#flowchartWindow1 { top: 12px * 0; left: 12px * 0;}
-#flowchartWindow2 { top: 12px * 0; left: 12px * 40;}
-#flowchartWindow3 { top: 12px * 30; left: 12px * 20;}
-#flowchartWindow4 { top: 12px * 20; left: 12px * 60;}
-.flowchart-demo ._jsPlumb_connector { z-index:4; }
-.flowchart-demo ._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel{ z-index:21;cursor:pointer; }
+  float: left;
 
-.flowchart-demo .aLabel {
-  background-color:white; 
-  padding:0.4em; 
-  font:12px sans-serif; 
-  color:#444;
-  z-index:21;
-  border:1px dotted gray;
-  opacity:0.8;
-  filter:alpha(opacity=80);
-  cursor: pointer;
-}
-.flowchart-demo .aLabel._jsPlumb_hover {
-  background-color:#5C96BC;
-  color:white;  
-  border:1px solid white;
-}
-
-.window._jsPlumb_connected {
-    border:2px solid green;
-}
-
-.jsplumb-drag {
-    border:4px solid pink !important;
+  background: green;
 }
