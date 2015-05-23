@@ -1,14 +1,28 @@
 <template name="index">
-  <h1>Workspaces</h1>
+  <h2>Start a new room</h2>
+  <label for="workspace__form-name">Name:</label>
+  <input type="text" id="workspace__form-name">
+  <label for="workspace__form-workspace">Workspace:</label>
+  <select name="workspace__form-workspace" id="workspace__form-workspace">
+    {{#each workspaces}}
+    <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+  <button class="workspace__form-start">Start</button>
+
+  <h2>Workspaces</h2>
   {{#each workspaces}}
     {{name}} 
+    <p>{{description}}</p>
 
-    <a href="">Start new room</a>
-    <h2>Current rooms</h2>
+    <h3>Current rooms</h3>
     {{#each rooms}}
       {{name}}
-      {{userCount}} / {{maxUsersCount}}
-      <a href="{{pathFor route='room'}}">Join</a>
+      <ul>
+        <li>Users: {{userCount}} / {{maxUsersCount}}</li>
+        <li><a href="{{pathFor route='room'}}">Join</a></li>
+    </ul>
     {{/each}}
+    <hr>
   {{/each}}
 </template>
