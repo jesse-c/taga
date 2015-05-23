@@ -1,0 +1,8 @@
+<template name="workspace__room">
+  <div id="workspace__room">
+    <h5>{{name}}</h5>
+    <p>({{userCount}} / {{maxUsersCount}} current users)</p>
+    <a href="{{pathFor route='room'}}" class="action primary">Join</a>
+    <a href="" class="workspace__end action secondary" data-bind="click: endRoom">End</a>
+  </div>
+</template>

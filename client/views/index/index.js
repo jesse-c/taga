@@ -2,33 +2,31 @@ Template.index.helpers({
 });
 
 Template.index.events({
-  'click .workspace__form-start': function(e) {
-    // Get name
-    var name = $('#workspace__form-name').val();
+});
+
+Template.index.viewmodel({
+  name: '',
+  selectedWorkspace: '',
+  hasName: function() {
+    return !!this.name();
+  },
+  startRoom: function() {
+    // TODO Create chat room
+    // 
 
     //
     var values = {
-      _workspace: $('#workspace__form-workspace option:selected').val(),
+      _workspace: this.selectedWorkspace(),
       _owner: Meteor.userId(),
-      name: name,
+      name: this.name(),
       _users: [],
-      _chat: name
+      _chat: this.name()
     };
     console.log(values);
-
-    // TODO
-    //Streamy.join(name);
 
     var id = Rooms.insert(values);
 
     // 
     Router.go('room', { _id: id });
-  },
-  'click .workspace__end': function(e) {
-    e.preventDefault();
-    
-    if (confirm("Are you sure?")) {
-      Meteor.call('endRoom', e.target.dataset.id);
-    }
   }
 });
