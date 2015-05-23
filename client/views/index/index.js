@@ -23,5 +23,12 @@ Template.index.events({
 
     // 
     Router.go('room', { _id: id });
+  },
+  'click .workspace__end': function(e) {
+    e.preventDefault();
+    
+    if (confirm("Are you sure?")) {
+      Meteor.call('endRoom', e.target.dataset.id);
+    }
   }
 });
