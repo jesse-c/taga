@@ -9,6 +9,100 @@ main {
   width: 100%;
 }
 
+$green: #65C58C;
+$red: #F2002D;
+$blue: #4EBCE5;
+$grey-dark: #333333;
+$grey-light: lighten($grey-dark, 10%);
+$grey-light-bg: #F7F7F7;
+
+/* Typography ****************************************************************/
+h1, h2, h3, h4, h5, h6 {
+  color: $grey-dark;
+}
+
+p {
+  color: $grey-light;
+}
+
+/* Buttons *******************************************************************/
+.action {
+  background: $grey-light-bg;
+  border-radius: 2px;
+  padding: 5px 10px;
+  border: none;
+  font-size: 0.7em;
+  text-decoration: none;
+
+  &:hover {
+    background: darken($grey-light-bg, 5%);
+  }
+
+  &.primary {
+    color: $grey-light-bg;
+    background: $green;
+
+    &:hover {
+      background: darken($green, 5%);
+    }
+  }
+
+  &.secondary {
+    color: $grey-light-bg;
+    background: $red;
+
+    &:hover {
+      background: darken($red, 5%);
+    }
+  }
+}
+
+
+/* Header ********************************************************************/
+#header__bar {
+  height: 25px;
+  padding: 8px 0 0 10px;
+
+  background: $grey-light-bg;
+
+  font-size: 0.9em;
+  color: $grey-light;
+}
+
+/* Index **********************************************************************/
+#index__container {
+  padding: 20px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  #workspace__workspace {
+    h4 {
+    }
+
+    #workspace__room {
+      margin-top: 10px;
+
+      h5, p, a {
+        display: inline-block;
+        margin: 0;
+      }
+
+      p {
+        font-size: 0.7em;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+
+/* Room **********************************************************************/
+
 $content-height: 90%;
 
 .canvas {

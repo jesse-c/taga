@@ -1,29 +1,34 @@
 <template name="index">
-  <h2>Start a new room</h2>
-  <label for="workspace__form-name">Name:</label>
-  <input type="text" id="workspace__form-name">
-  <label for="workspace__form-workspace">Workspace:</label>
-  <select name="workspace__form-workspace" id="workspace__form-workspace">
+  <div id="index__container">
+    <h1> Index</h1>
+    <p>Welcome to fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+    <h2>Start a new room</h2>
+    <label for="workspace__form-name">Name:</label>
+    <input type="text" id="workspace__form-name">
+    <label for="workspace__form-workspace">Workspace:</label>
+    <select name="workspace__form-workspace" id="workspace__form-workspace">
+      {{#each workspaces}}
+      <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <button class="workspace__form-start action primary">Start</button>
+
+    <h2>Workspaces</h2>
     {{#each workspaces}}
-    <option value="{{_id}}">{{name}}</option>
-    {{/each}}
-  </select>
-  <button class="workspace__form-start">Start</button>
+      <div id="workspace__workspace">
+        <h3>{{name}}</h3>
+        <p>{{description}}</p>
 
-  <h2>Workspaces</h2>
-  {{#each workspaces}}
-    {{name}} 
-    <p>{{description}}</p>
-
-    <h3>Current rooms</h3>
-    {{#each rooms}}
-      {{name}}
-      <ul>
-        <li>Users: {{userCount}} / {{maxUsersCount}}</li>
-        <li><a href="{{pathFor route='room'}}">Join</a></li>
-        <li><a href="" class="workspace__end" data-id="{{_id}}">End</a></li>
-    </ul>
+        <h4>Current rooms</h4>
+        {{#each rooms}}
+          <div id="workspace__room">
+            <h5>{{name}}</h5>
+            <p>({{userCount}} / {{maxUsersCount}} current users)</p>
+            <a href="{{pathFor route='room'}}" class="action primary">Join</a>
+            <a href="" class="workspace__end action secondary" data-id="{{_id}}">End</a>
+          </div>
+        {{/each}}
+      </div>
     {{/each}}
-    <hr>
-  {{/each}}
+  </div>
 </template>
