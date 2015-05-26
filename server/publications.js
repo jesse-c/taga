@@ -39,3 +39,7 @@ Meteor.publish('#g', function() {
 Meteor.publish('#b', function() {
   return B.find({}, { limit: 1 });
 });
+
+Meteor.publish('sensor', function() {
+  return Sensor.find({}, { limit: 1 });
+});

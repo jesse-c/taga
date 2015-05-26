@@ -93,5 +93,6 @@ Meteor.startup(function() {
     R.insert({ value: 0 }); 
     G.insert({ value: 0 }); 
     B.insert({ value: 0 }); 
+    Sensor.insert({ r: 0, g: 0, b: 0 }); 
   }
 });
