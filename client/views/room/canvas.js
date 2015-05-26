@@ -126,20 +126,6 @@ Template.canvas.rendered = function() {
               connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
           };
 
-      var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
-          for (var i = 0; i < sourceAnchors.length; i++) {
-              var sourceUUID = toId + sourceAnchors[i];
-              console.log(sourceUUID);
-              instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                  anchor: sourceAnchors[i], uuid: sourceUUID
-              });
-          }
-          for (var j = 0; j < targetAnchors.length; j++) {
-              var targetUUID = toId + targetAnchors[j];
-              instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: targetAnchors[j], uuid: targetUUID });
-          }
-      };
-
       // suspend drawing and initialise.
       //instance.batch(function () {
 
@@ -164,21 +150,6 @@ Template.canvas.rendered = function() {
               Meteor.call('unlock', $(params.el).data('id'), $(params.el).offset().top, $(params.el).offset().left);
             }
           });
-
-          /*
-          _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-          _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
-          _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
-          _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
-
-          // connect a few up
-          instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
-          instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
-          instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
-          instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
-          instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
-          instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
-          */
 
           /* End points ******************************************************/
           // TODO Should be in the object
@@ -226,7 +197,7 @@ Template.canvas.rendered = function() {
           instance.connect({uuids: ['pwm_input_out', 'pwm_output_out_pwm'], editable: false});
 
           // RGB LED -> RGB Sensor
-          instance.connect({uuids: ['rgb_led_out_output', 'rgb_sensor_in_led'], editable: false});
+          instance.connect({uuids: ['rgb_led_out_sensor', 'rgb_sensor_in_led'], editable: false});
 
           // RGB Sensor -> RGB Output
           instance.connect({uuids: ['rgb_sensor_out_output', 'rgb_output_in_sensor'], editable: false});
