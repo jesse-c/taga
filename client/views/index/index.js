@@ -25,16 +25,25 @@ Template.index.viewmodel({
       _users: [],
       chat: this.name()
     };
-    console.log(values);
 
     var id = Rooms.insert(values);
 
-    // TODO TEST Add the room to the workspace's list
+    // Add the room to the workspace's list
     Workspaces.update(values._workspace, { $push: { _rooms: id }});
 
-    // TODO Setup the room
     // TODO Show waiting for setup message
-    // TODO Go to room once it's ready
-    // Router.go('room', { _id: id });
+    // TODO Setup the room - should do server side
+    // Make copies of the Objects for this workspace in ObjectInstances
+    var objs = Objects.find({}, { _workspaces: values._workspace });
+    objs.forEach(function (doc) {
+      doc._object = doc._id;
+      delete doc._id;
+      doc._room = id; 
+
+      ObjectInstances.insert(doc);
+    });
+    
+    // Go to room once it's ready
+    Router.go('room', { _id: id });
   }
 });

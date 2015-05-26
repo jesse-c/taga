@@ -75,7 +75,7 @@ p {
 
 /* Index **********************************************************************/
 #index__container {
-  padding: 20px;
+  margin: 20px;
 
   h1 {
     margin-top: 0;
@@ -210,10 +210,12 @@ $content-height: 90%;
     border:1px dotted red;
   }
 
-  #flowchartWindow1 { top: 12px * 0; left: 12px * 0;}
-  #flowchartWindow2 { top: 12px * 0; left: 12px * 40;}
+  /* Moved to DOM
+  #flowchartWindow1 { top: 12px * 6; left: 12px * 0;}
+  #flowchartWindow2 { top: 12px * 6; left: 12px * 40;}
   #flowchartWindow3 { top: 12px * 30; left: 12px * 20;}
   #flowchartWindow4 { top: 12px * 20; left: 12px * 60;}
+  */
   .flowchart-demo ._jsPlumb_connector { z-index:4; }
   .flowchart-demo ._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel{ z-index:21;cursor:pointer; }
 

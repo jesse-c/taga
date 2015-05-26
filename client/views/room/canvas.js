@@ -1,7 +1,35 @@
 Template.canvas.helpers({
+  objectInstances: function() {
+    return ObjectInstances.find();
+  },
+  objectInstancePower: function() {
+    return ObjectInstances.findOne({ name: 'Power' });
+  },
+  objectInstanceGround: function() {
+    return ObjectInstances.findOne({ name: 'Ground' });
+  },
+  objectInstancePWMInput: function() {
+    return ObjectInstances.findOne({ name: 'PWM Input' });
+  },
+  objectInstanceRGBLED: function() {
+    return ObjectInstances.findOne({ name: 'RGB LED' });
+  },
+  objectInstanceRGBSensor: function() {
+    return ObjectInstances.findOne({ name: 'RGB Sensor' });
+  },
+  objectInstanceRGBOutput: function() {
+    return ObjectInstances.findOne({ name: 'RGB Output' });
+  },
+  objectInstancePWMOutput: function() {
+    return ObjectInstances.findOne({ name: 'PWM Output' });
+  }
 });
 
 Template.canvas.events({
+});
+
+Template['canvas'].viewmodel({
+  // TODO bool for if controlled
 });
 
 Template.canvas.rendered = function() {
@@ -94,6 +122,7 @@ Template.canvas.rendered = function() {
       var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
           for (var i = 0; i < sourceAnchors.length; i++) {
               var sourceUUID = toId + sourceAnchors[i];
+              console.log(sourceUUID);
               instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
                   anchor: sourceAnchors[i], uuid: sourceUUID
               });
@@ -116,14 +145,22 @@ Template.canvas.rendered = function() {
           instance.draggable($(".flowchart-demo .window"), { 
             grid: [12, 12],
             start: function (params) {
+              console.log('started drag');
+              // TODO Lock object instance to this user
             },
             drag: function (params) {
+              console.log('dragging');
+              // TODO Update transient component instance x,y (top,left)
             },
             stop: function (params) {
+              console.log('finished drag');
+              // TODO Update component instance x,y (top,left)
               Meteor.call('test');
+              // TODO Unlok object instance
             }
           });
 
+          /*
           _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
           _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
           _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
@@ -136,7 +173,12 @@ Template.canvas.rendered = function() {
           instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
           instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
           instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
+          */
 
+          /* End points ******************************************************/
+          // TODO Should be in the object
+          // Power
+          instance.addEndpoint('object__power', sourceEndpoint, { anchor: 'BottomCenter', uuid: 'power_out' });
 
           // listen for clicks on connections, and offer to delete connections on click.
           instance.bind("click", function (conn, originalEvent) {
