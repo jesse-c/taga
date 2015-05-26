@@ -20,7 +20,7 @@
         <p>{{description}}</p>
 
         <h4>Current rooms</h4>
-        {{#each rooms}}
+        {{#each _roomsData _id}}
           {{> workspace__room}}
         {{/each}}
       </div>
