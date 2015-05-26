@@ -14,3 +14,17 @@ Template['workspace__object'].viewmodel(function(data) {
   };
 });
     */
+Template['object__pwm_input'].viewmodel({
+  r: 0,
+  g: 0,
+  b: 0,
+  updateRGB: function(e) {
+    e.preventDefault();
+    console.log(this.r(), this.g(), this.b());
+    R.update(R.findOne()._id, { $set: { value: this.r() }});
+    G.update(G.findOne()._id, { $set: { value: this.g() }});
+    B.update(B.findOne()._id, { $set: { value: this.b() }});
+
+    // TODO Display waiting message
+  }
+});

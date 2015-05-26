@@ -13,15 +13,18 @@
 <template name="object__pwm_input">
   <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
     <h1>{{name}}</h1>
-    <label>R:</label>
-    <input type="text">
-    <label>G:</label>
-    <input type="text">
-    <label>B:</label>
-    <input type="text">
-    <!--
-    // TODO Update R,G,B collections (viewmodel or event)
-    -->
+    <form>
+      <label>R:</label>
+      <input type="text" data-bind="value: r">
+      <label>G:</label>
+      <input type="text" data-bind="value: g">
+      <label>B:</label>
+      <input type="text" data-bind="value: b">
+      <!--
+      // TODO Update R,G,B collections (viewmodel or event)
+      -->
+      <input type="submit" data-bind="click: updateRGB">
+    </form>
   </div>
 </template>
 
