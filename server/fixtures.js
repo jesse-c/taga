@@ -6,10 +6,7 @@ Meteor.startup(function() {
       email: 'test@test.com',
       password: 'testtest'
     });
-  }
 
-  // Objects
-  if (!Objects.find().count()) {
     // Workspace
     var workspace = Workspaces.insert({
       name: "PWM/Colour theory",
@@ -91,5 +88,10 @@ Meteor.startup(function() {
     }
 
     Workspaces.update(workspace, { $set: { _objects: objsIds } });
+
+    // RGB
+    R.insert({ value: 0 }); 
+    G.insert({ value: 0 }); 
+    B.insert({ value: 0 }); 
   }
 });
