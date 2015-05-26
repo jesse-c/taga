@@ -1,41 +1,50 @@
 <template name="object__power">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
   </div>
 </template>
 
 <template name="object__ground">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
   </div>
 </template>
 
 <template name="object__pwm_input">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
-  </div>
-</template>
-
-<template name="object__rgb_led">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
-  </div>
-</template>
-
-<template name="object__rgb_sensor">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
-  </div>
-</template>
-
-<template name="object__rgb_output">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
+    <label>R:</label>
+    <input type="text">
+    <label>G:</label>
+    <input type="text">
+    <label>B:</label>
+    <input type="text">
+    <!--
+    // TODO Update R,G,B collections (viewmodel or event)
+    -->
   </div>
 </template>
 
 <template name="object__pwm_output">
-  <div class="{{class}}" id="{{id}}" style="top: {{top}}px; left: {{left}}px">
-    <strong>{{name}}</strong><br/><br/>
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
+  </div>
+</template>
+
+<template name="object__rgb_led">
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
+  </div>
+</template>
+
+<template name="object__rgb_sensor">
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
+  </div>
+</template>
+
+<template name="object__rgb_output">
+  <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
+    <h1>{{name}}</h1>
   </div>
 </template>

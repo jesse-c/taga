@@ -94,7 +94,11 @@ Template.canvas.rendered = function() {
               connectorStyle: connectorPaintStyle,
               hoverPaintStyle: endpointHoverStyle,
               connectorHoverStyle: connectorHoverStyle,
+              hoverPaintStyle: endpointHoverStyle,
+              maxConnections: -1,
               dragOptions: {},
+              isTarget: false,
+              /*
               overlays: [
                   [ "Label", {
                       location: [0.5, 1.5],
@@ -102,6 +106,7 @@ Template.canvas.rendered = function() {
                       cssClass: "endpointSourceLabel"
                   } ]
               ]
+              */
           },
       // the definition of target endpoints (will appear when the user drags a connection)
           targetEndpoint = {
@@ -111,9 +116,11 @@ Template.canvas.rendered = function() {
               maxConnections: -1,
               dropOptions: { hoverClass: "hover", activeClass: "active" },
               isTarget: true,
+              /*
               overlays: [
                   [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel" } ]
               ]
+              */
           },
           init = function (connection) {
               connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
@@ -138,25 +145,23 @@ Template.canvas.rendered = function() {
 
           // listen for new connections; initialise them the same way we initialise the connections at startup.
           instance.bind("connection", function (connInfo, originalEvent) {
-              init(connInfo.connection);
+              //init(connInfo.connection);
           });
 
           // make all the window divs draggable
           instance.draggable($(".flowchart-demo .window"), { 
             grid: [12, 12],
             start: function (params) {
-              console.log('started drag');
-              // TODO Lock object instance to this user
+              // Lock object instance to this user
+              Meteor.call('lock', $(params.el).data('id'));
             },
             drag: function (params) {
-              console.log('dragging');
-              // TODO Update transient component instance x,y (top,left)
+              // Update transient component instance x,y (top,left)
+              Meteor.call('updatePosition', $(params.el).data('id'), $(params.el).offset().top, $(params.el).offset().left);
             },
             stop: function (params) {
-              console.log('finished drag');
-              // TODO Update component instance x,y (top,left)
-              Meteor.call('test');
-              // TODO Unlok object instance
+              // Update component instance x,y (top,left) and unlock
+              Meteor.call('unlock', $(params.el).data('id'), $(params.el).offset().top, $(params.el).offset().left);
             }
           });
 
@@ -179,6 +184,53 @@ Template.canvas.rendered = function() {
           // TODO Should be in the object
           // Power
           instance.addEndpoint('object__power', sourceEndpoint, { anchor: 'BottomCenter', uuid: 'power_out' });
+
+          // Ground
+          instance.addEndpoint('object__ground', targetEndpoint, { anchor: 'TopCenter', uuid: 'ground_in' });
+
+          // PWM Input
+          instance.addEndpoint('object__pwm_input', sourceEndpoint, { anchor: 'Left', uuid: 'pwm_input_out' });
+
+          // PWM Output (graph)
+          instance.addEndpoint('object__pwm_output', targetEndpoint, { anchor: 'Right', uuid: 'pwm_output_out_pwm' });
+
+          // RGB LED
+          instance.addEndpoint('object__rgb_led', targetEndpoint, { anchor: 'TopCenter', uuid: 'rgb_led_in_power' });
+          instance.addEndpoint('object__rgb_led', targetEndpoint, { anchor: 'Left', uuid: 'rgb_led_in_pwm' });
+          instance.addEndpoint('object__rgb_led', sourceEndpoint, { anchor: 'BottomCenter', uuid: 'rgb_led_out_ground' });
+          instance.addEndpoint('object__rgb_led', sourceEndpoint, { anchor: 'Right', uuid: 'rgb_led_out_sensor' });
+
+          // RGB Output
+          instance.addEndpoint('object__rgb_output', targetEndpoint, { anchor: 'Left', uuid: 'rgb_output_in_sensor' });
+
+          // RGB Sensor
+          instance.addEndpoint('object__rgb_sensor', sourceEndpoint, { anchor: 'TopCenter', uuid: 'rgb_sensor_out_ground' });
+          instance.addEndpoint('object__rgb_sensor', targetEndpoint, { anchor: 'Left', uuid: 'rgb_sensor_in_led' });
+          instance.addEndpoint('object__rgb_sensor', targetEndpoint, { anchor: 'Right', uuid: 'rgb_sensor_in_power' });
+          instance.addEndpoint('object__rgb_sensor', sourceEndpoint, { anchor: 'BottomCenter', uuid: 'rgb_sensor_out_output' });
+
+          /* Conections ******************************************************/
+          // Power -> RGB LED
+          instance.connect({uuids: ['power_out', 'rgb_led_in_power'], editable: false});
+          // Power -> RGB Sensor
+          instance.connect({uuids: ['power_out', 'rgb_sensor_in_power'], editable: false});
+
+          // RGB LED -> Ground
+          instance.connect({uuids: ['rgb_led_out_ground', 'ground_in'], editable: false});
+          // RGB Sensor -> Ground
+          instance.connect({uuids: ['rgb_sensor_out_ground','ground_in'], editable: false});
+
+          // PWM Input -> RGB LED
+          instance.connect({uuids: ['pwm_input_out', 'rgb_led_in_pwm'], editable: false});
+          // PWM Input -> PWM Output (graph)
+          instance.connect({uuids: ['pwm_input_out', 'pwm_output_out_pwm'], editable: false});
+
+          // RGB LED -> RGB Sensor
+          instance.connect({uuids: ['rgb_led_out_output', 'rgb_sensor_in_led'], editable: false});
+
+          // RGB Sensor -> RGB Output
+          instance.connect({uuids: ['rgb_sensor_out_output', 'rgb_output_in_sensor'], editable: false});
+
 
           // listen for clicks on connections, and offer to delete connections on click.
           instance.bind("click", function (conn, originalEvent) {
