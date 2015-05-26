@@ -25,8 +25,8 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__power',
         class: 'window',
-        top: 8 * 12,
-        left: 8 * 12
+        top: 60,
+        left: 276
       },
       // Ground
       {
@@ -34,8 +34,8 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__ground',
         class: 'window',
-        top: 8 * 12,
-        left: 40 * 12
+        top: 588,
+        left: 420
       },
       // PWM Input
       {
@@ -43,8 +43,8 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__pwm_input',
         class: 'window',
-        top: 40 * 12,
-        left: 40 * 12
+        top: 168,
+        left: 672
       },
       // RGB LED 
       {
@@ -52,8 +52,8 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__rgb_led',
         class: 'window',
-        top: 50 * 12,
-        left: 40 * 12
+        top: 372,
+        left: 240
       },
       // RGB Sensor
       {
@@ -61,17 +61,17 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__rgb_sensor',
         class: 'window',
-        top: 60 * 12,
-        left: 40 * 12
+        top: 444,
+        left: 672
       },
       // RGB Output
       {
         name: 'RGB Output',
         _workspaces: [workspace],
-        id: 'object__ground',
+        id: 'object__output',
         class: 'window',
-        top: 70 * 12,
-        left: 40 * 12
+        top: 588,
+        left: 792
       },
       // PWM Output
       {
@@ -79,8 +79,8 @@ Meteor.startup(function() {
         _workspaces: [workspace],
         id: 'object__pwm_output',
         class: 'window',
-        top: 80 * 12,
-        left: 40 * 12
+        top: 72,
+        left: 256
       }
     ];
 
