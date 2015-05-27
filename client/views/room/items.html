@@ -1,16 +1,23 @@
 <template name="room__items">
   <div id="room__items">
     <div>
-      Objects
+      <h3>Objects</h3>
+      {{!--
       {{#each objects}}
         {{> room__items__object}}
       {{/each}}
+      --}}
+      <p>All objects in use.</p>
     </div>
+    <hr>
     <div>
-      Data sources
+      <h3>Data sources</h3>
+      {{!--
       {{#each dataSources}}
         {{name}}
       {{/each}}
+      --}}
+      <p>All data sources in use.</p>
     </div>
   </div>
 </template>

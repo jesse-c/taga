@@ -1,23 +1,25 @@
 <template name="chat">
   <div id="room__chat">
     <div>
-      Users
-      <ul>
-      {{#each users room}}
-        <li>{{_id}}</li>
-      {{/each}}
+      <h3>Users</h3>
+      <ul id="chat__users">
+        {{#each users room}}
+          <li>{{_id}}</li>
+        {{/each}}
       </ul>
     </div>
+    <hr>
     <div>
+      <h3>Messages</h3>
       {{#each messages}}
         {{> chat__message}}
       {{/each}}
     </div>
-    <div>
+    <hr>
+    <div id="chat__form">
       <form>
-        <label>Message:</label>
         <input type="text" id="room__chat__message">
-        <input type="submit">
+        <input type="submit" class="action primary">
       </form>
     </div>
   </div>
@@ -25,6 +27,6 @@
 
 <template name="chat__message">
   <div class="room__chat__message">
-    {{_user}}: {{message}}
+    <strong>{{_user}}:</strong> {{message}}
   </div>
 </template>

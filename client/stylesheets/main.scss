@@ -9,6 +9,10 @@ main {
   width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 $green: #65C58C;
 $red: #F2002D;
 $blue: #4EBCE5;
@@ -248,7 +252,40 @@ $content-height: 90%;
 
   float: left;
 
-  background: blue;
+  padding: 15px 20px;
+
+  background: $grey-light-bg;
+  border-right: 1px solid lighten($grey-light, 50%);
+
+  hr {
+    margin: 15px 0px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid lighten($grey-light, 50%);
+  }
+
+  h3 {
+    font-size: 1.1em;
+    margin: 0 0 10px 0;
+    color: $grey-light;
+  }
+
+  p {
+    font-size: 0.9em;
+    margin: 0 0 0 0;
+    color: $grey-light;
+  }
+
+  #chat__users {
+    font-size: 0.9em;
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
 
   #room__items__object {
   }
@@ -260,23 +297,89 @@ $content-height: 90%;
 
   float: left;
 
-  background: red;
+  padding: 15px 20px;
+
+  background: $grey-light-bg;
+  border-left: 1px solid lighten($grey-light, 50%);
+
+  hr {
+    margin: 15px 0px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid lighten($grey-light, 50%);
+    color: $grey-light;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    margin: 0 0 10px 0;
+  }
+
+  #chat__users {
+    font-size: 0.9em;
+
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .room__chat__message {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  #chat__form {
+    input[type="text"] {
+      display: block;
+      font-size: 0.9em;
+      color: $grey-light;
+    }
+    input[type="submit"] {
+      display: block;
+      margin: 10px 0 0 0;
+    }
+  }
 }
 
-.room__header {
+#room__header {
   height: (100 - $content-height) / 2;
   width: 100%;
-
   float: left;
 
-  background: yellow;
+  background: $grey-light-bg;
+  border-bottom: 1px solid lighten($grey-light, 50%);
+
+  a {
+    colour: $grey-dark;
+
+    &:visited {
+      colour: $grey-dark;
+    }
+  }
 }
 
-.room__status {
+#room__status {
   height: (100 - $content-height) / 2;
   width: 100%;
-
   float: left;
 
-  background: green;
+  background: $grey-light-bg;
+  border-top: 1px solid lighten($grey-light, 50%);
+
+  font-weight: normal;
+
+  #room__status_inner {
+    position: relative;
+
+    span {
+      margin: 10px 0 0 10px;
+    }
+  }
 }
