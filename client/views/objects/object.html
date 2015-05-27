@@ -55,5 +55,13 @@
 <template name="object__rgb_output">
   <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
     <h1>{{name}}</h1>
+    <ul>
+      <li>R: {{sensor.r}}</li>
+      <li>G: {{sensor.g}}</li>
+      <li>B: {{sensor.b}}</li>
+    </ul>
+    <button id="generateColour" class="action primary">Generate colour</button>
+    <div id="rgb_output__led">
+    </div>
   </div>
 </template>

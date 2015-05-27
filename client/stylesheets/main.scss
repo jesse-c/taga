@@ -425,3 +425,31 @@ $content-height: 90%;
   input[type="submit"] {
   }
 }
+
+#object__rgb_output {
+  width: 125px;
+  height: 165px;
+
+  ul {
+    margin:: 0;
+    padding: 0;
+    list-style: none;
+
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+
+  #generateColour {
+    margin-top: 10px;
+  }
+
+  #rgb_output__led {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    background: transparent;
+    border: 1px solid $grey-light;
+  }
+}

@@ -72,3 +72,26 @@ Template['object__pwm_input'].viewmodel({
   }
 });
 */
+
+Template['object__rgb_output'].helpers({
+  sensor: function() {
+    return Sensor.findOne();
+  }
+});
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+Template['object__rgb_output'].events({
+  'click #generateColour': function(e) {
+    e.preventDefault();
+
+    var rgb = Sensor.findOne();
+
+    $('#rgb_output__led').css('background-color', function() {
+    return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+    });
+  }
+});
