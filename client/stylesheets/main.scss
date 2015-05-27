@@ -67,8 +67,15 @@ p {
 }
 
 /* Header ********************************************************************/
+.bar {
+  background: $grey-light-bg;
+
+  font-size: 0.9em;
+  color: $grey-light;
+}
+
 #header__bar {
-  height: 25px;
+  height: 35px;
   padding: 8px 0 0 10px;
 
   background: $grey-light-bg;
@@ -356,12 +363,27 @@ $content-height: 90%;
   background: $grey-light-bg;
   border-bottom: 1px solid lighten($grey-light, 50%);
 
+  padding: 11px;
+
   a {
     colour: $grey-dark;
+    text-decoration: none;
 
     &:visited {
       colour: $grey-dark;
     }
+
+    &:hover {
+      colour: $grey-dark;
+      text-decoration: underline;
+    }
+  }
+
+  #header__left {
+    float: left;
+  }
+  #header__right {
+    float: right;
   }
 }
 
@@ -375,10 +397,7 @@ $content-height: 90%;
 
   font-weight: normal;
 
-  span {
-    display: block;
-    margin: 11px 0 0 10px;
-  }
+  padding: 11px;
 }
 
 /* Objects ******************************************************************/

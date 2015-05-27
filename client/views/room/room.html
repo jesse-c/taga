@@ -1,7 +1,7 @@
 <template name="room">
-  {{> roomHeader}}
+  {{> roomHeader room=room}}
   {{> room__items room=room}}
   {{> canvas room=room}}
   {{> chat room=room}}
-  {{> status}}
+  {{> status room=room}}
 </template>

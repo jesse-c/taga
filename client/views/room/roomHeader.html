@@ -1,5 +1,9 @@
 <template name="roomHeader">
-  <div class="room__header">
-    <a href="{{pathFor route='index'}}">Index</a>
+  <div id="room__header" class="bar">
+    <div id="header__left">
+      <a href="{{pathFor route='index'}}">&larr; Index</a> | Room: {{room.name}}
+    </div>
+    <div id="header__right">
+    </div>
   </div>
 </template>
