@@ -14,16 +14,22 @@
   <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
     <h1>{{name}}</h1>
     <form>
-      <label>R:</label>
-      <input type="text" id="input-r" value="{{r}}">
-      <label>G:</label>
-      <input type="text" id="input-g" value="{{g}}">
-      <label>B:</label>
-      <input type="text" id="input-b" value="{{b}}">
+      <div class="input__field">
+        <label>R:</label>
+        <input type="text" id="input-r" value="{{r}}" disabled="{{inUse}}">
+      </div>
+      <div class="input__field">
+        <label>G:</label>
+        <input type="text" id="input-g" value="{{g}}">
+      </div>
+      <div class="input__field">
+        <label>B:</label>
+        <input type="text" id="input-b" value="{{b}}">
+      </div>
       <!--
       // TODO Update R,G,B collections (viewmodel or event)
       -->
-      <input type="submit" id="pwm_input__submit">
+      <input type="submit" id="pwm_input__submit" class="action primary">
     </form>
   </div>
 </template>

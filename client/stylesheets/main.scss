@@ -383,3 +383,29 @@ $content-height: 90%;
     }
   }
 }
+
+/* Objects ******************************************************************/
+
+#object__pwm_input {
+  width: 200px;
+  height: 175px;
+
+  label {
+    display: inline-block;
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+  input[type="text"] {
+    display: inline-block;
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+
+  .input__field {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+  }
+}
