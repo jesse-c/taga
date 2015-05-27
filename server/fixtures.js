@@ -66,7 +66,7 @@ Meteor.startup(function() {
       {
         name: 'RGB Output',
         _workspaces: [workspace],
-        id: 'object__output',
+        id: 'object__rgb_output',
         class: 'window',
         top: 588,
         left: 792
