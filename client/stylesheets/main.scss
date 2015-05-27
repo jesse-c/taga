@@ -242,13 +242,16 @@ $content-height: 90%;
   }
 }
 
-.items {
+#room__items {
   height: $content-height;
   width: 20%;
 
   float: left;
 
   background: blue;
+
+  #room__items__object {
+  }
 }
 
 #room__chat {

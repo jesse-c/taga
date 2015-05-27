@@ -1,5 +1,15 @@
-<template name="items">
-  <div class="items">
+<template name="room__items">
+  <div id="room__items">
+    <div>
+      {{#each objects}}
+        {{> room__items__object}}
+      {{/each}}
+    </div>
   </div>
 </template>
 
+<template name="room__items__object">
+  <div>
+    {{name}}
+  </div>
+</template>
