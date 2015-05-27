@@ -296,6 +296,14 @@ $content-height: 90%;
 
   #room__items__object {
   }
+
+  #items__target_colour {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $grey-light;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
 }
 
 #room__chat {

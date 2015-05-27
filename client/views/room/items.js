@@ -7,3 +7,10 @@ Template['room__items'].helpers({
     return DataSources.find();
   }
 });
+
+Template['room__items'].rendered = function() {
+  var room = Rooms.findOne();
+  $('#items__target_colour').css('background-color', function() {
+    return room.colour;
+  });
+};

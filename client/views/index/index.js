@@ -23,7 +23,8 @@ Template.index.viewmodel({
       _owner: Meteor.userId(),
       name: this.name(),
       _users: [],
-      chat: this.name()
+      chat: this.name(),
+      colour: '#'+Math.floor(Math.random()*16777215).toString(16)
     };
 
     var id = Rooms.insert(values);

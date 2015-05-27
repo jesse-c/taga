@@ -47,6 +47,8 @@ Template['object__pwm_input'].events({
     G.update(G.findOne()._id, { $set: { value: $('#input-g').val() }});
     B.update(B.findOne()._id, { $set: { value: $('#input-b').val() }});
 
+    Meteor.call('updateStatus', 'Submitted PWM values');
+
     // TODO ? Tell the Arduino it's ready
   }
 });
@@ -79,6 +81,7 @@ Template['object__rgb_output'].helpers({
   }
 });
 
+// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
@@ -86,12 +89,14 @@ function componentToHex(c) {
 
 Template['object__rgb_output'].events({
   'click #generateColour': function(e) {
+    Meteor.call('updateStatus', 'Generated colour');
+
     e.preventDefault();
 
     var rgb = Sensor.findOne();
 
     $('#rgb_output__led').css('background-color', function() {
-    return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+      return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
     });
   }
 });

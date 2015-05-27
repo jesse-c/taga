@@ -2,6 +2,9 @@ Meteor.methods({
   'test': function() {
     console.log('Called test');
   },
+  'updateStatus': function(newStatus) {
+    Rooms.update(Rooms.findOne()._id, { $set: { status: newStatus }});
+  },
   'readSensor': function(r, g, b) {
     console.log('Called readSensor');
     console.log(r, g, b);
