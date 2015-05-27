@@ -39,6 +39,15 @@ Template['object__pwm_input'].events({
   },
   'change #input-b': function() {
     B.update(B.findOne()._id, { $set: { value: $('#input-b').val() }});
+  },
+  'click #pwm_input__submit, submit form': function(e) {
+    e.preventDefault();
+
+    R.update(R.findOne()._id, { $set: { value: $('#input-r').val() }});
+    G.update(G.findOne()._id, { $set: { value: $('#input-g').val() }});
+    B.update(B.findOne()._id, { $set: { value: $('#input-b').val() }});
+
+    // TODO ? Tell the Arduino it's ready
   }
 });
 
