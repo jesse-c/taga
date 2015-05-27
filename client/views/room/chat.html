@@ -1,4 +1,30 @@
 <template name="chat">
-  <div class="room__chat">
+  <div id="room__chat">
+    <div>
+      Users
+      <ul>
+      {{#each users room}}
+        <li>{{_id}}</li>
+      {{/each}}
+      </ul>
+    </div>
+    <div>
+      {{#each messages}}
+        {{> chat__message}}
+      {{/each}}
+    </div>
+    <div>
+      <form>
+        <label>Message:</label>
+        <input type="text" id="room__chat__message">
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+</template>
+
+<template name="chat__message">
+  <div class="room__chat__message">
+    {{_user}}: {{message}}
   </div>
 </template>

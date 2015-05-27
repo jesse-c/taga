@@ -43,3 +43,7 @@ Meteor.publish('#b', function() {
 Meteor.publish('sensor', function() {
   return Sensor.find({}, { limit: 1 });
 });
+
+Meteor.publish('chat', function(roomId) {
+  return Chat.find({ _room: roomId });
+});
