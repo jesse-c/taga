@@ -12,6 +12,7 @@ Meteor.startup(function() {
       name: "PWM/Colour theory",
       description: "Students learnt about PWM and colour theory by controlling an RGB LED.",
       _rooms: [],
+      _dataSources: [],
       _objects: []
     });
 
@@ -87,7 +88,19 @@ Meteor.startup(function() {
       objsIds.push(newId);
     }
 
+    // Do the same for data sources -- only 1, RGB Sensor
+    var dataSourcesIds = [];
+    dataSourcesIds.push(DataSources.insert({
+        name: 'RGB Sensor',
+        _workspaces: [workspace],
+        id: 'object__rgb_sensor',
+        class: 'window',
+        top: 444,
+        left: 672
+    }));
+
     Workspaces.update(workspace, { $set: { _objects: objsIds } });
+    Workspaces.update(workspace, { $set: { _dataSources: dataSourcesIds } });
 
     // RGB
     R.insert({ value: 0 }); 

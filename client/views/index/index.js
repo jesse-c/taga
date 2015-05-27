@@ -42,6 +42,15 @@ Template.index.viewmodel({
 
       ObjectInstances.insert(doc);
     });
+
+    var ds = DataSources.find({}, { _workspaces: values._workspace });
+    ds.forEach(function (doc) {
+      doc._dataSource = doc._id;
+      delete doc._id;
+      doc._room = id; 
+
+      DataSourceInstances.insert(doc);
+    });
     
     // Go to room once it's ready
     Router.go('room', { _id: id });

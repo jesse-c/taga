@@ -16,6 +16,9 @@ Meteor.methods({
   },
   'endRoom': function(id) {
     Rooms.remove(id);
+    // TODO Remove instances
+    ObjectInstances.remove({}, { _room: id });
+    DataSourceInstances.remove({}, { _room: id });
   },
   'lock': function(id) {
     ObjectInstances.update(id, { 

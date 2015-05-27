@@ -28,6 +28,15 @@ Meteor.publish('objectInstancesTransient', function(roomId) {
   return ObjectInstancesTransient.find({ _room: roomId });
 });
 
+// TODO
+Meteor.publish('dataSources', function(workspaceId) {
+  //return DataSources.find({ _workspaces: workspaceId });
+  return DataSources.find();
+});
+Meteor.publish('dataSourceInstances', function(roomId) {
+  return DataSourceInstances.find({ _room: roomId });
+});
+
 Meteor.publish('#r', function() {
   return R.find({}, {limit: 1});
 });
