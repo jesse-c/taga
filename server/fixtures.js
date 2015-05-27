@@ -2,9 +2,16 @@ Meteor.startup(function() {
   // Test user
   if (!Meteor.users.find().count()) {
     Accounts.createUser({
-      username: 'test',
-      email: 'test@test.com',
-      password: 'testtest'
+      username: 'jesse',
+      password: 'test'
+    });
+    Accounts.createUser({
+      username: 'joel',
+      password: 'test'
+    });
+    Accounts.createUser({
+      username: 'mark',
+      password: 'test'
     });
 
     // Workspace

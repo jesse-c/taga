@@ -3,8 +3,8 @@
     <div>
       <h3>Users</h3>
       <ul id="chat__users">
-        {{#each users room}}
-          <li>{{_id}}</li>
+        {{#each room._users}}
+          <li>{{findUsername this}}</li>
         {{/each}}
       </ul>
     </div>
@@ -27,6 +27,6 @@
 
 <template name="chat__message">
   <div class="room__chat__message">
-    <strong>{{_user}}:</strong> {{message}}
+    <strong>{{username}}:</strong> {{message}}
   </div>
 </template>

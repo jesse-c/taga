@@ -1,6 +1,9 @@
 Template['chat'].helpers({
-  users: function(room) {
-    return Meteor.users.find({ _id: { $in:  room._users }});
+  users: function() {
+    return Meteor.users.find();
+  },
+  findUsername: function(id) {
+    return Meteor.users.findOne(id).username;
   },
   messages: function() {
     return Chat.find({}, { sort: { createdAt: 1 }});
@@ -14,6 +17,7 @@ Template['chat'].events({
     Chat.insert({
       _room: Rooms.findOne()._id,
       _user: Meteor.userId(),
+      username: Meteor.user().username,
       message: $('#room__chat__message').val()
     });
 

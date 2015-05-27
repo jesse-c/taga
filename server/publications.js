@@ -56,3 +56,7 @@ Meteor.publish('sensor', function() {
 Meteor.publish('chat', function(roomId) {
   return Chat.find({ _room: roomId });
 });
+
+Meteor.publish('users', function() {
+  return Meteor.users.find();
+});
