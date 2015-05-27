@@ -375,12 +375,9 @@ $content-height: 90%;
 
   font-weight: normal;
 
-  #room__status_inner {
-    position: relative;
-
-    span {
-      margin: 10px 0 0 10px;
-    }
+  span {
+    display: block;
+    margin: 11px 0 0 10px;
   }
 }
 

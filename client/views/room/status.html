@@ -1,4 +1,12 @@
 <template name="status">
-  <div class="room__status">
+  <div id="room__status" class="bar">
+    <span>
+      <strong>Status: </strong>
+      {{#if room.status}}
+        {{room.status}}
+      {{else}}
+        -
+      {{/if}}
+    </span>
   </div>
 </template>
