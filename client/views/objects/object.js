@@ -24,10 +24,63 @@ Template['object__pwm_input'].helpers({
   },
   b: function() {
     return B.findOne().value;
+  },
+  objectLink: function(id) {
+    var room = Rooms.findOne();
+    return '/room/' + room._id + '/object/' + id;
   }
 });
 
 Template['object__pwm_input'].events({
+  'focus #input-r': function() {
+    // TODO Update controller
+  },
+  'change #input-r': function() {
+    R.update(R.findOne()._id, { $set: { value: $('#input-r').val() }});
+  },
+  'change #input-g': function() {
+    G.update(G.findOne()._id, { $set: { value: $('#input-g').val() }});
+  },
+  'change #input-b': function() {
+    B.update(B.findOne()._id, { $set: { value: $('#input-b').val() }});
+  },
+  'click #pwm_input__submit, submit form': function(e) {
+    e.preventDefault();
+
+    var newR = $('#input-r').val();
+    var newG = $('#input-g').val();
+    var newB = $('#input-b').val();
+
+    R.update(R.findOne()._id, { $set: { value: newR } });
+    G.update(G.findOne()._id, { $set: { value: newG } });
+    B.update(B.findOne()._id, { $set: { value: newB } });
+
+    Submitted.insert({
+      r: newR,
+      g: newG,
+      b: newB,
+      shown: false
+    });
+
+    Meteor.call('updateStatus', 'Submitted PWM values');
+
+    // TODO ? Tell the Arduino it's ready
+  }
+});
+
+Template['object__pwm_input_mobile'].helpers({
+  r: function() {
+    return R.findOne().value;
+  },
+  g: function() {
+    return G.findOne().value;
+  },
+  b: function() {
+    return B.findOne().value;
+  }
+});
+
+Template['object__pwm_input_mobile'].events({
   'focus #input-r': function() {
     // TODO Update controller
   },

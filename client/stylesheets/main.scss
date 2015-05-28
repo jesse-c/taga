@@ -414,6 +414,59 @@ $content-height: 90%;
   width: 200px;
   height: 205px;
 
+  h1 {
+    a {
+      text-decoration: none;
+      color: $grey-light;
+    }
+  }
+
+  p {
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+
+  label {
+    display: inline-block;
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+  input[type="text"] {
+    display: inline-block;
+    font-size: 0.9em;
+    color: $grey-light;
+  }
+
+  .input__field {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+  }
+}
+
+#object__pwm_input_mobile {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+
+  .bar {
+    height: 25px;
+    padding-top: 3px;
+
+    a {
+      text-decoration: none;
+      colour: $grey-light;
+    }
+  }
+
+  h1 {
+    font-size: 1.1em;
+    color: $grey-light;
+  }
+
   p {
     font-size: 0.9em;
     color: $grey-light;
