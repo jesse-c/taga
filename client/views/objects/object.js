@@ -251,7 +251,7 @@ Template['object__pwm_output'].rendered = function() {
     chart: {
       type: 'spline',
       animation: Highcharts.svg, // don't animate in old IE
-      marginRight: 10,
+      marginRight: 15,
       events: {
         load: function () {
           // set up the updating of the chart each second
