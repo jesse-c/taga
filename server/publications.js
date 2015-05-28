@@ -53,6 +53,10 @@ Meteor.publish('sensor', function() {
   return Sensor.find({}, { limit: 1 });
 });
 
+Meteor.publish('submitted', function() {
+  return Submitted.find({ shown: false });
+});
+
 Meteor.publish('chat', function(roomId) {
   return Chat.find({ _room: roomId });
 });

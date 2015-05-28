@@ -412,7 +412,12 @@ $content-height: 90%;
 
 #object__pwm_input {
   width: 200px;
-  height: 175px;
+  height: 205px;
+
+  p {
+    font-size: 0.9em;
+    color: $grey-light;
+  }
 
   label {
     display: inline-block;
@@ -459,5 +464,17 @@ $content-height: 90%;
 
     background: transparent;
     border: 1px solid $grey-light;
+  }
+}
+
+#object__pwm_output {
+  width: 250px;
+  height: 250px;
+
+  #pwm_outout__graph {
+    margin: 0 auto;
+
+    width: 150px;
+    height: 50px;
   }
 }

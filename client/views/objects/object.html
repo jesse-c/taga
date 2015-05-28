@@ -13,6 +13,7 @@
 <template name="object__pwm_input">
   <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
     <h1>{{name}}</h1>
+    <p>Between 0 - 255 only</p>
     <form>
       <div class="input__field">
         <label>R:</label>
@@ -37,6 +38,8 @@
 <template name="object__pwm_output">
   <div class="{{class}}" id="{{id}}" data-id="{{_id}}" style="top: {{top}}px; left: {{left}}px">
     <h1>{{name}}</h1>
+    <div id="pwm_output__graph">
+    </div>
   </div>
 </template>
 

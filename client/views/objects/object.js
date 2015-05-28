@@ -43,9 +43,20 @@ Template['object__pwm_input'].events({
   'click #pwm_input__submit, submit form': function(e) {
     e.preventDefault();
 
-    R.update(R.findOne()._id, { $set: { value: $('#input-r').val() }});
-    G.update(G.findOne()._id, { $set: { value: $('#input-g').val() }});
-    B.update(B.findOne()._id, { $set: { value: $('#input-b').val() }});
+    var newR = $('#input-r').val();
+    var newG = $('#input-g').val();
+    var newB = $('#input-b').val();
+
+    R.update(R.findOne()._id, { $set: { value: newR } });
+    G.update(G.findOne()._id, { $set: { value: newG } });
+    B.update(B.findOne()._id, { $set: { value: newB } });
+
+    Submitted.insert({
+      r: newR,
+      g: newG,
+      b: newB,
+      shown: false
+    });
 
     Meteor.call('updateStatus', 'Submitted PWM values');
 
@@ -100,3 +111,112 @@ Template['object__rgb_output'].events({
     });
   }
 });
+
+Template['object__pwm_output'].rendered = function() {
+  time = new Date().getTime();
+
+  var dataRed = [];
+  dataRed.push({
+      x: time,
+      y: 0
+  });
+
+  var dataGreen = [];
+  dataGreen.push({
+      x: time,
+      y: 0
+  });
+
+  var dataBlue = [];
+  dataBlue.push({
+      x: time,
+      y: 0
+  });
+
+  Highcharts.setOptions({
+    global: {
+      useUTC: false
+    }
+  });
+
+  // http://www.highcharts.com/demo/dynamic-update
+  $('#pwm_output__graph').highcharts({
+    chart: {
+      type: 'spline',
+      animation: Highcharts.svg, // don't animate in old IE
+      marginRight: 10,
+      events: {
+        load: function () {
+          // set up the updating of the chart each second
+          var seriesR = this.series[0];
+          var seriesG = this.series[1];
+          var seriesB = this.series[2];
+          var chart = this;
+
+          setInterval(function () {
+            var nextRGB = Submitted.findOne(); 
+
+            if (nextRGB) {
+              var x = new Date().getTime(); // current time
+              console.log(nextRGB.r);
+              seriesR.addPoint([x, parseInt(nextRGB.r)], false, false);
+              seriesG.addPoint([x, parseInt(nextRGB.g)], false, false);
+              seriesB.addPoint([x, parseInt(nextRGB.b)], false, false);
+              chart.redraw();
+
+              Submitted.update(nextRGB._id, { $set: { shown: true } });
+            }
+          }, 1000);
+        }
+      }
+    },
+    title: {
+      text: ''
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      type: 'datetime',
+      tickPixelInterval: 5
+    },
+    yAxis: {
+      min: 0,
+      max: 255,
+      plotLines: [
+        {
+          value: 0,
+          width: 1,
+          color: '#F2002D'
+        },
+        {
+          value: 0,
+          width: 1,
+          color: '#65C58C'
+        },
+        {
+          value: 0,
+          width: 1,
+          color: '#4EBCE5'
+        }
+      ]
+    },
+    legend: {
+      enabled: false
+    },
+    series: [
+      {
+        name: 'Red',
+        data: dataRed
+      },
+      {
+        name: 'Green',
+        data: dataGreen
+      },
+      {
+        name: 'Blue',
+        data: dataBlue
+      }
+    ]
+  });
+};
