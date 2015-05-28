@@ -7,6 +7,9 @@ Template['chat'].helpers({
   },
   messages: function() {
     return Chat.find({}, { sort: { createdAt: 1 }});
+  },
+  hasMessages: function() {
+    return Chat.find({}, { sort: { createdAt: 1 }}).count();
   }
 });
 

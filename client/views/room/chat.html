@@ -11,9 +11,15 @@
     <hr>
     <div>
       <h3>Messages</h3>
-      {{#each messages}}
-        {{> chat__message}}
-      {{/each}}
+      {{#if hasMessages}}
+        {{#each messages}}
+          {{> chat__message}}
+        {{/each}}
+      {{else}}
+        <div class="room__chat__message">
+          <p>Be the first to say something..</p>
+        </div>
+      {{/if}}
     </div>
     <hr>
     <div id="chat__form">
