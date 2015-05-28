@@ -77,6 +77,10 @@ Template['object__pwm_input_mobile'].helpers({
   },
   b: function() {
     return B.findOne().value;
+  },
+  roomLink: function() {
+    var room = Rooms.findOne();
+    return '/room/' + room._id;
   }
 });
 
@@ -117,6 +121,10 @@ Template['object__pwm_input_mobile'].events({
   }
 });
 
+Template['object__pwm_input_mobile'].rendered = function() {
+  $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">');
+};
+
 /*
 Template['object__pwm_input'].viewmodel({
   r: 0,
@@ -142,6 +150,10 @@ Template['object__pwm_input'].viewmodel({
 Template['object__rgb_output'].helpers({
   sensor: function() {
     return Sensor.findOne();
+  },
+  objectLink: function(id) {
+    var room = Rooms.findOne();
+    return '/room/' + room._id + '/object/' + id;
   }
 });
 
@@ -164,6 +176,40 @@ Template['object__rgb_output'].events({
     });
   }
 });
+
+Template['object__rgb_output_mobile'].helpers({
+  sensor: function() {
+    return Sensor.findOne();
+  },
+  roomLink: function() {
+    var room = Rooms.findOne();
+    return '/room/' + room._id;
+  }
+});
+
+// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+Template['object__rgb_output_mobile'].events({
+  'click #generateColour': function(e) {
+    Meteor.call('updateStatus', 'Generated colour');
+
+    e.preventDefault();
+
+    var rgb = Sensor.findOne();
+
+    $('#rgb_output__led').css('background-color', function() {
+      return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+    });
+  }
+});
+
+Template['object__rgb_output_mobile'].rendered = function() {
+  $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">');
+};
 
 Template['object__pwm_output'].rendered = function() {
   time = new Date().getTime();
