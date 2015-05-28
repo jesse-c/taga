@@ -177,6 +177,14 @@ Template['object__rgb_output'].events({
   }
 });
 
+Template['object__rgb_output'].rendered = function() {
+  var rgb = Sensor.findOne();
+
+  $('#rgb_output__led').css('background-color', function() {
+    return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+  });
+};
+
 Template['object__rgb_output_mobile'].helpers({
   sensor: function() {
     return Sensor.findOne();
@@ -186,12 +194,6 @@ Template['object__rgb_output_mobile'].helpers({
     return '/room/' + room._id;
   }
 });
-
-// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
 
 Template['object__rgb_output_mobile'].events({
   'click #generateColour': function(e) {
@@ -209,6 +211,12 @@ Template['object__rgb_output_mobile'].events({
 
 Template['object__rgb_output_mobile'].rendered = function() {
   $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1">');
+
+  var rgb = Sensor.findOne();
+
+  $('#rgb_output__led').css('background-color', function() {
+    return "#" + componentToHex(rgb.r) + componentToHex(rgb.g) + componentToHex(rgb.b);
+  });
 };
 
 Template['object__pwm_output'].rendered = function() {
