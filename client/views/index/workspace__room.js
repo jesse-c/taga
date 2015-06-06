@@ -7,6 +7,7 @@ Template['workspace__room'].viewmodel(function(data) {
         Meteor.call('endRoom', this._id());
 
         // TODO [Works but throws error] Add the room to the workspace's list
+        // TODO Move into endRoom method
         Workspaces.update({ _id: this._workspace }, { $pull: { _rooms: this._id() }});
       }
     }
